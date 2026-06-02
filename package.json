@@ -1,0 +1,36 @@
+{
+  "name": "aims-guard-accountability-trigger-engine",
+  "version": "1.0.0",
+  "description": "AI Governance and Human Oversight control for high-risk GitHub pull request changes.",
+  "main": "index.js",
+  "author": "Japmandeep Ahluwalia (Sunny) <https://aimsguard.org>",
+  "license": "Apache-2.0",
+  "homepage": "https://aimsguard.org",
+  "keywords": [
+    "ai-governance",
+    "human-oversight",
+    "accountability",
+    "accountability-triggers",
+    "iso-iec-42001",
+    "github-action",
+    "audit-logging",
+    "governance"
+  ],
+  "scripts": {
+    "build": "ncc build index.js -o dist --license licenses.txt",
+    "check": "node --check index.js"
+  },
+  "dependencies": {
+    "@actions/artifact": "^2.3.2",
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "js-yaml": "^4.1.0",
+    "minimatch": "^9.0.5"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

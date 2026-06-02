@@ -1,0 +1,63 @@
+name: AIMS Guard Accountability Trigger Engine
+description: AI Governance and Human Oversight control for high-risk GitHub pull request changes.
+author: Japmandeep Ahluwalia (Sunny)
+
+branding:
+  icon: shield
+  color: blue
+
+inputs:
+  github_token:
+    description: GitHub token used to read pull request data, add labels, post comments, and support audit logging.
+    required: true
+
+  risk_config_path:
+    description: Path to the AIMS Guard risk rules YAML configuration file.
+    required: false
+    default: config/risk-rules.yml
+
+  approval_phrase:
+    description: Pull request comment phrase used as the MVP human approval signal.
+    required: false
+    default: /aims-approve
+
+  governance_label:
+    description: Label applied to pull requests when human governance review is required.
+    required: false
+    default: governance-review-required
+
+  audit_artifact_name:
+    description: Name of the GitHub Actions artifact containing the AIMS Guard audit record.
+    required: false
+    default: aims-guard-audit
+
+  audit_output_path:
+    description: Local workflow path where the structured audit JSON file should be written.
+    required: false
+    default: audit/aims-guard-audit.json
+
+  fail_on_required_approval:
+    description: Whether the action should fail when human approval is required but missing.
+    required: false
+    default: "true"
+
+outputs:
+  decision:
+    description: Governance decision produced by AIMS Guard ATE.
+
+  approval_required:
+    description: Whether human approval was required for the pull request.
+
+  approval_found:
+    description: Whether the configured human approval phrase was found.
+
+  matched_rules:
+    description: JSON summary of matched governance risk rules.
+
+  audit_path:
+    description: Path to the generated audit record.
+
+runs:
+  using: node20
+  main: dist/index.js
+

@@ -1,0 +1,38 @@
+name: AIMS Guard ATE Demo
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  issue_comment:
+    types:
+      - created
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  actions: write
+
+jobs:
+  aims-guard:
+    name: AIMS Guard ATE
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event.issue.pull_request != null
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run AIMS Guard ATE
+        uses: ./
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          risk_config_path: config/risk-rules.yml
+          approval_phrase: "/aims-approve"
+          governance_label: governance-review-required
+          audit_artifact_name: aims-guard-audit
+          audit_output_path: audit/aims-guard-audit.json
+          fail_on_required_approval: "true"

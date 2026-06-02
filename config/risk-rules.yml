@@ -1,0 +1,130 @@
+# AIMS Guard Accountability Trigger Engine (ATE)
+# Default MVP risk rules.
+#
+# Author: Japmandeep Ahluwalia (Sunny)
+# Organisation: Luxyn Ethics & Governance (LEG) AI Governance Lab
+# Website: https://aimsguard.org
+#
+# These rules define high-risk repository areas that should trigger
+# human oversight before merge approval.
+
+version: 1
+
+metadata:
+  project: AIMS Guard Accountability Trigger Engine (ATE)
+  author: Japmandeep Ahluwalia (Sunny)
+  organisation: Luxyn Ethics & Governance (LEG) AI Governance Lab
+  website: https://aimsguard.org
+  governance_focus:
+    - AI Governance
+    - Human Oversight
+    - Accountability Triggers
+    - Audit Logging
+    - ISO/IEC 42001-inspired governance principles
+  governance_principles:
+    - Human accountability
+    - Human oversight
+    - Traceability
+    - Auditability
+    - Risk-based controls
+    - Transparency
+
+defaults:
+  action: require_human_approval
+  risk: high
+  approval_phrase: /aims-approve
+  governance_label: governance-review-required
+
+rules:
+  - id: github-actions-workflow-change
+    name: GitHub Actions workflow change
+    description: Workflow changes can alter CI/CD, deployment, or security controls.
+    paths:
+      - ".github/workflows/**"
+    risk: high
+    action: require_human_approval
+    oversight_reason: Human review is required because workflow changes may affect automated controls, build integrity, secrets exposure, or deployment behavior.
+
+  - id: security-policy-change
+    name: Security policy change
+    description: Security policy and security documentation changes require human governance review.
+    paths:
+      - "SECURITY.md"
+      - "security/**"
+      - "policies/security/**"
+    risk: high
+    action: require_human_approval
+    oversight_reason: Human review is required because security policy changes may affect organisational control expectations and incident response obligations.
+
+  - id: authentication-authorization-change
+    name: Authentication or authorization change
+    description: Authentication and authorization logic changes can affect access control.
+    paths:
+      - "src/auth/**"
+      - "src/authz/**"
+      - "auth/**"
+      - "login/**"
+      - "oauth/**"
+      - "sso/**"
+      - "authorization/**"
+      - "identity/**"
+    risk: high
+    action: require_human_approval
+    oversight_reason: Human review is required because access control changes can introduce privilege, identity, or account security risks.
+
+  - id: infrastructure-configuration-change
+    name: Infrastructure configuration change
+    description: Infrastructure and deployment configuration changes can affect production systems.
+    paths:
+      - "infra/**"
+      - "infrastructure/**"
+      - "terraform/**"
+      - "k8s/**"
+      - "kubernetes/**"
+      - "helm/**"
+      - "deploy/**"
+      - "deployment/**"
+    risk: high
+    action: require_human_approval
+    oversight_reason: Human review is required because infrastructure changes may affect availability, resilience, deployment boundaries, or security posture.
+
+  - id: secrets-and-permissions-change
+    name: Secrets or permissions configuration change
+    description: Changes to secrets, permissions, or access configuration require governance oversight.
+    paths:
+      - ".github/dependabot.yml"
+      - ".github/codeql.yml"
+      - ".github/permissions/**"
+      - "secrets/**"
+      - "permissions/**"
+      - "rbac/**"
+      - "iam/**"
+    risk: high
+    action: require_human_approval
+    oversight_reason: Human review is required because secrets and permission changes can alter access boundaries or expose sensitive systems.
+
+  - id: ai-governance-policy-change
+    name: AI governance policy change
+    description: AI governance, model policy, and responsible AI control changes require accountable human oversight.
+    paths:
+      - "ai-governance/**"
+      - "governance/**"
+      - "policies/ai/**"
+      - "policies/governance/**"
+      - "model-policy/**"
+      - "responsible-ai/**"
+    risk: high
+    action: require_human_approval
+    oversight_reason: Human review is required because AI governance control changes may affect accountability, oversight, risk treatment, or assurance evidence.
+
+  - id: audit-control-change
+    name: Audit control change
+    description: Audit logging and compliance control changes require governance review.
+    paths:
+      - "audit/**"
+      - "logging/**"
+      - "compliance/**"
+      - "controls/**"
+    risk: high
+    action: require_human_approval
+    oversight_reason: Human review is required because audit and control changes may affect evidence quality, traceability, or governance assurance.
