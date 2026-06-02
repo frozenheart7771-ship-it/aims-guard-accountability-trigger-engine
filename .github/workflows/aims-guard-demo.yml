@@ -36,3 +36,4 @@ jobs:
           audit_artifact_name: aims-guard-audit
           audit_output_path: audit/aims-guard-audit.json
           fail_on_required_approval: "true"
+# AIMS TEST 2026
