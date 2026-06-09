@@ -2,6 +2,29 @@
 
 ## At a Glance
 
+### AIMS Guard Accountability Trigger Engine (ATE)
+
+A practical AI governance control designed to introduce accountability triggers and human oversight into software development workflows.
+
+**Project Hub:** https://aims-guard-ai-governance-hub.vercel.app
+
+**Future Domain:** aimsguard.org (currently under development)
+
+### Who is this for?
+
+* AI Governance practitioners
+* Responsible AI professionals
+* Risk and compliance teams
+* Software engineering leaders
+* DevOps and platform teams
+* Organisations implementing AI governance controls
+
+### What problem does it solve?
+
+ATE helps organisations identify high-risk changes in pull requests and require human oversight before critical changes are merged, creating a clear audit trail and accountability record.
+
+
+**AIMS Guard Accountability Trigger Engine (ATE)** is an open-source...
 ### What is AIMS Guard ATE?
 
 AIMS Guard Accountability Trigger Engine (ATE) is an open-source AI governance control for GitHub repositories.
