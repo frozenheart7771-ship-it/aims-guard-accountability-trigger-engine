@@ -58,6 +58,6 @@ outputs:
     description: Path to the generated audit record.
 
 runs:
-  using: node20
+  using: node24
   main: dist/index.js
 
